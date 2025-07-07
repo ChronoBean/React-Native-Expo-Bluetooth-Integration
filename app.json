@@ -9,14 +9,25 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app needs access to location to show your position on the map and provide location-based features.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs access to location to show your position on the map and provide location-based features."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.teamcmcwebcode.bluetoothdemo"
+      "package": "com.teamcmcwebcode.bluetoothdemo",
+      "permissions": [
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -25,6 +36,7 @@
     },
     "plugins": [
       "expo-router",
+      "expo-location",
       [
         "react-native-ble-manager",
         {
@@ -47,20 +59,16 @@
     "experiments": {
       "typedRoutes": true
     },
+    "updates": {
+      "url": "https://u.expo.dev/77577e9f-019f-4c83-8cfa-e8bdae50a538"
+    },
     "extra": {
       "router": {
         "origin": false
       },
       "eas": {
-        "projectId": "77577e9f-019f-4c83-8cfa-e8bdae50a538"
+        "projectId": "6ff92c65-ce56-49a1-8c21-000b14025891"
       }
-    },
-    "owner": "team-cmcwebcode",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/77577e9f-019f-4c83-8cfa-e8bdae50a538"
     }
   }
 }
