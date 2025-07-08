@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
+import Constants from 'expo-constants';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function ExploreScreen() {
+  const apiKey = Constants.expoConfig?.extra?.GOOGLE_MAPS_API_KEY || process.env.GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY_HERE';
   const mapHTML = `
     <!DOCTYPE html>
     <html>
@@ -62,7 +64,7 @@ export default function ExploreScreen() {
           document.getElementById('map').innerHTML = '<div class="loading">Error loading map</div>';
         });
       </script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcGF8tkYz-mUlLZOX23HGJ681k_naCPEc&callback=initMap"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap"></script>
     </body>
     </html>
   `;

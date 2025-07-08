@@ -1,6 +1,27 @@
-# Welcome to your Expo app 👋
+# React Native Expo Bluetooth Integration with Maps
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an [Expo](https://expo.dev) project that integrates Bluetooth functionality with an interactive Google Maps interface.
+
+## Features
+
+- 🗺️ Interactive Google Maps interface
+- 📍 Location tracking and mapping
+- 📱 Cross-platform React Native app
+- 🔗 Bluetooth integration capabilities
+- 🎨 Modern UI with tab navigation
+
+## Environment Setup
+
+Before running the app, you need to set up your Google Maps API key:
+
+1. Create a `.env` file in the root directory
+2. Add your Google Maps API key:
+   ```
+   GOOGLE_MAPS_API_KEY=your_actual_api_key_here
+   ```
+3. Copy `.env.example` to `.env` and replace the placeholder with your actual API key
+
+**Note**: Never commit your actual API key to version control. The `.env` file is already in `.gitignore`.
 
 ## Get started
 
