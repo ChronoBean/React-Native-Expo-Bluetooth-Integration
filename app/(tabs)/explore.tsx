@@ -1,12 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
-import Constants from 'expo-constants';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function ExploreScreen() {
-  const apiKey = Constants.expoConfig?.extra?.GOOGLE_MAPS_API_KEY || process.env.GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY_HERE';
   const mapHTML = `
     <!DOCTYPE html>
     <html>
@@ -41,18 +39,34 @@ export default function ExploreScreen() {
           try {
             const map = new google.maps.Map(document.getElementById('map'), {
               center: { lat: 37.78825, lng: -122.4324 },
-              zoom: 15,
+              zoom: 18,
               mapTypeId: google.maps.MapTypeId.ROADMAP,
               mapTypeControl: true,
               streetViewControl: true,
               fullscreenControl: true
             });
-            
-            // Add a marker for the center point
+
+            map.setTilt(60);
+            map.setHeading(45);
+
             new google.maps.Marker({
               position: { lat: 37.78825, lng: -122.4324 },
               map: map,
               title: 'San Francisco'
+            });
+
+            // Heatmap data
+            const heatmapData = [
+              new google.maps.LatLng(37.78825, -122.4324),
+              new google.maps.LatLng(37.78925, -122.4324),
+              new google.maps.LatLng(37.78825, -122.4314),
+              new google.maps.LatLng(37.78725, -122.4334)
+            ];
+
+            const heatmap = new google.maps.visualization.HeatmapLayer({
+              data: heatmapData,
+              map: map,
+              radius: 40
             });
           } catch (error) {
             document.getElementById('map').innerHTML = '<div class="loading">Error loading map</div>';
@@ -64,7 +78,7 @@ export default function ExploreScreen() {
           document.getElementById('map').innerHTML = '<div class="loading">Error loading map</div>';
         });
       </script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcGF8tkYz-mUlLZOX23HGJ681k_naCPEc&callback=initMap&libraries=visualization"></script>
     </body>
     </html>
   `;
@@ -76,7 +90,7 @@ export default function ExploreScreen() {
           Map
         </ThemedText>
         <ThemedText style={styles.subtitle}>
-          Interactive Google Maps
+          Immersive 3D Google Maps with Heatmap
         </ThemedText>
       </View>
       <WebView
